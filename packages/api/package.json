@@ -4,9 +4,14 @@
   "main": "index.js",
   "author": "Claire Froelich",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config app.js"
+  },
   "dependencies": {
+    "cors": "2.8.5",
     "dotenv": "8.2.0",
     "express": "4.17.1",
-    "mongoose": "5.11.17"
+    "mongoose": "5.11.17",
+    "nodemon": "2.0.7"
   }
 }
