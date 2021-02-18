@@ -2,13 +2,14 @@
   "name": "client",
   "version": "1.0.0",
   "scripts": {
-    "start": "snowpack dev",
+    "start": "NODE_ENV=development snowpack dev",
     "build": "snowpack build",
     "test": "web-test-runner \"src/**/*.test.tsx\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "axios": "0.21.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "5.2.0"
