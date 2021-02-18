@@ -3,13 +3,29 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { createRoom } = require("./controllers");
 
 const port = process.env.PORT || 4444
+
 app.use(
   cors({
     origin: "http://localhost:8080",
   })
 );
+
+// body parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.send("You're in");
+});
+
+router.post("/rooms", createRoom);
+
+app.use("/api/v1", router);
 
 // connect to db and start server
 mongoose
