@@ -1,7 +1,9 @@
+const { BadRequest } = require("../utils/errors");
 class RoomController {
-  async createRoom(req, res) {
+  createRoom(req, res) {
     const { title, host_secret } = req.body;
     console.log({ title, host_secret });
+    throw new BadRequest('test');
     res.send("ok");
   }
 }

@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { router } = require("./router");
+const handleErrors = require("./middleware/handleError");
 
 const port = process.env.PORT || 4444
 
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/api/v1", router);
+
+app.use(handleErrors);
 
 // connect to db and start server
 mongoose
