@@ -3,9 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const { createRoom } = require("./controllers");
-const { validateSchema } = require("./middleware/validateSchema");
-const { createRoomSchema } = require("../common/validationSchemas");
+const { router } = require("./router");
 
 const port = process.env.PORT || 4444
 
@@ -18,14 +16,6 @@ app.use(
 // body parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.send("You're in");
-});
-
-router.post("/rooms", validateSchema(createRoomSchema), createRoom);
 
 app.use("/api/v1", router);
 
