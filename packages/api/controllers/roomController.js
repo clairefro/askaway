@@ -1,4 +1,4 @@
-const { GeneralError } = require("../utils/errors");
+const { GeneralError, NotFound } = require("../utils/errors");
 const Room = require("../models").Room;
 
 /** Hide host_secret from client */
@@ -11,14 +11,26 @@ class RoomController {
   async createRoom(req, res) {
     const { title, host_secret } = req.body;
 
-    let room = null;
-
     try {
-      room = await Room.create({ title, host_secret });
+      const room = await Room.create({ title, host_secret });
       res.send(publicRoom(room));
     } catch (e) {
       throw new GeneralError(e);
     }
+  }
+
+  async getRoom(req, res) {
+    const {
+      params: { id },
+    } = req;
+
+    try {
+      const room = await Room.findById(id);
+      res.send(publicRoom(room));
+    } catch (e) {
+      throw new NotFound(`No room found with id: ${id}`);
+    }
+    res.send("ok");
   }
 }
 
