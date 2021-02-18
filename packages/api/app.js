@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { createRoom } = require("./controllers");
+const { validateSchema } = require("./middleware/validateSchema");
+const { createRoomSchema } = require("../common/validationSchemas");
 
 const port = process.env.PORT || 4444
 
@@ -23,7 +25,7 @@ router.get("/", (req, res) => {
   res.send("You're in");
 });
 
-router.post("/rooms", createRoom);
+router.post("/rooms", validateSchema(createRoomSchema), createRoom);
 
 app.use("/api/v1", router);
 
