@@ -9,6 +9,6 @@
 		"packages/*"
 	],
   "scripts": {
-		"dev": "yarn workspace api dev"
+		"dev": "yarn workspace @askaway/api dev & yarn workspace @askaway/client start"
 	}
 }
