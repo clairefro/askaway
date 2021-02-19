@@ -16,6 +16,7 @@ router.post(
   validateSchema(createRoomSchema),
   asyncHandler(roomController.createRoom)
 );
+
 router.get("/rooms/:id", asyncHandler(roomController.getRoom));
 
 module.exports = {
