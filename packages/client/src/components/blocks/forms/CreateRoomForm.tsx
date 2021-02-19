@@ -8,6 +8,7 @@ import type { CreateRoomInput } from "../../../daos/RoomDao";
 import YR from "@hookform/resolvers/yup";
 import * as schemas from "@askaway/common/validationSchemas";
 import { FormErrorMsg } from "../Form/FormErrorMsg";
+import { useHistory } from "react-router-dom";
 
 // snowpack workaround
 const yupResolver = YR.yupResolver;
@@ -16,12 +17,15 @@ export const CreateRoomForm: FC = () => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schemas.createRoomSchema),
   });
+  const history = useHistory();
   const { roomDao } = useAppContext();
 
   const onSubmit = async (input: CreateRoomInput) => {
     try {
       const room = await roomDao.create(input);
-      console.log({ room });
+      if (room) {
+        history.push(`/rooms/${room._id}`);
+      }
     } catch (e) {
       console.log(e);
       // TODO: toastify
