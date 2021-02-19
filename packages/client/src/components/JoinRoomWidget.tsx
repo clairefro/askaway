@@ -16,7 +16,7 @@ export const JoinRoomWidget: FC = () => {
   };
 
   return (
-    <div>
+    <div className="flex items-center">
       <Input
         name="join-room-widget"
         label="Enter room id"
@@ -24,7 +24,11 @@ export const JoinRoomWidget: FC = () => {
         hideLabel
         placeholder="Room ID"
       />
-      <Button onClick={navigateToRoom}>Join!</Button>
+      <Button className="mb-2" onClick={navigateToRoom}>
+        
+        Join!
+      
+      </Button>
     </div>
   );
 };

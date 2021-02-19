@@ -35,11 +35,17 @@ export const CreateRoomForm: FC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Input label="Room title" name="title" ref={register()} />
+      <Input
+        label="Room title"
+        name="title"
+        placeholder="ex: AMA with Fullstack dev Cora!"
+        ref={register()}
+      />
       <FormErrorMsg message={errors.title?.message} />
 
       <Input
-        label="Room secret (save this! last time you'll see it)"
+        label="Room secret for hosts"
+        placeholder="ex: S3CR3T"
         name="host_secret"
         ref={register()}
       />

@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import type { RouteComponentProps } from "react-router-dom";
+import { H1 } from "../../components/blocks/H1";
 import { useAppContext } from "../../context/AppContext";
 
 interface MatchParams {
@@ -30,7 +31,7 @@ export const Room: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
 
   return (
     <div>
-      <h1>{room.title}</h1>
+      <H1>{room.title}</H1>
       <p>This is a room, trust me</p>
     </div>
   );
