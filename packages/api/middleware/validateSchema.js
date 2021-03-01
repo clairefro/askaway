@@ -13,7 +13,6 @@ const validateBodySchema = (schema) => async (req, res, next) => {
 
 const validateParamsSchema = (schema) => async (req, res, next) => {
   const params = req.params;
-  console.log({ req });
   try {
     await schema.validate(params, { strict: true });
     next();

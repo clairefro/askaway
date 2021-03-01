@@ -21,7 +21,7 @@ class QuestionController {
 
       res.send(question);
     } catch (e) {
-      throw new GeneralError(e);
+      throw new GeneralError(JSON.stringify(e));
     }
   }
 
@@ -34,7 +34,11 @@ class QuestionController {
       const question = await Question.findById(id);
       res.send(question);
     } catch (e) {
-      throw new NotFound(`No question found with id: ${id}`);
+      throw new NotFound(
+        `Error when fetching question with id: ${id}. Error: ${JSON.stringify(
+          e
+        )}`
+      );
     }
   }
 }

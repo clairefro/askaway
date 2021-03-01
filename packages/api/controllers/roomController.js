@@ -15,7 +15,7 @@ class RoomController {
       const room = await Room.create({ title, host_secret });
       res.send(publicRoom(room));
     } catch (e) {
-      throw new GeneralError(e);
+      throw new GeneralError(JSON.stringify(e));
     }
   }
 
@@ -26,11 +26,11 @@ class RoomController {
 
     try {
       const room = await Room.findById(id).populate("questions").exec();
-      console.log({ room });
       res.send(publicRoom(room));
     } catch (e) {
-      console.log({  e  });;
-      throw new NotFound(`No room found with id: ${id}`);
+      throw new NotFound(
+        `Error when fetching room with id: ${id}. Error: ${JSON.stringify(e)}`
+      );
     }
   }
 }
