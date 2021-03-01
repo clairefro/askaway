@@ -1,8 +1,9 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import type { RouteComponentProps } from "react-router-dom";
 import { H1 } from "../../components/blocks/H1";
 import { useAppContext } from "../../context/AppContext";
 import { Question } from "../../components/Question";
+import { CreateQuestionForm } from "../../components/blocks/forms/CreateQuestionForm";
 
 interface MatchParams {
   id: string;
@@ -29,15 +30,17 @@ export const Room: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
     return <p>Room invalid or expired! :(</p>;
   }
 
-  const { questions } = room;
+  const { questions, title } = room;
 
   return (
     <div>
-      <H1>{room.title}</H1>
-      <p>This is a room, trust me</p>
+      <H1>{title}</H1>
       {questions.map((q) => (
         <Question data={q} key={q._id} />
       ))}
+      
+      {/* TODO: add username alias in app context */}
+      <CreateQuestionForm roomId={room._id} username="TODO"  />
     </div>
   );
 };

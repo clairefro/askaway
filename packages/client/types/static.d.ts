@@ -1,7 +1,10 @@
-declare module "@askaway/common" {}
+declare module "@askaway/common" {
+  const schemas: { validationSchemas: any };
+  export { validationSchemas };
+}
 declare module "@askaway/common/validationSchemas" {
-  const schemas: { createRoomSchema: any };
-  export { createRoomSchema };
+  const schemas: { createRoomSchema: any; createQuestionSchema: any };
+  export { createRoomSchema, createQuestionSchema };
 }
 
 
