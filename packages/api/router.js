@@ -1,23 +1,38 @@
 const Router = require("express").Router;
-const { validateSchema } = require("./middleware/validateSchema");
-const { createRoomSchema } = require("../common/validationSchemas");
+const {
+  validateBodySchema,
+  validateParamsSchema,
+} = require("./middleware/validateSchema");
+const {
+  createRoomSchema,
+  createQuestionSchema,
+} = require("../common/validationSchemas");
 const { buildControllers } = require("./buildControllers");
 const asyncHandler = require("./utils/asyncHandler");
 
 const router = Router();
-const { roomController } = buildControllers();
+const { roomController, questionController } = buildControllers();
 
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
   res.send("You're in");
 });
 
+// Rooms -----------------------------
 router.post(
   "/rooms",
-  validateSchema(createRoomSchema),
+  validateBodySchema(createRoomSchema),
   asyncHandler(roomController.createRoom)
 );
 
 router.get("/rooms/:id", asyncHandler(roomController.getRoom));
+
+// Questions -------------------------
+router.post(
+  "/questions",
+  validateBodySchema(createQuestionSchema),
+  asyncHandler(questionController.createQuestion)
+);
+
 
 module.exports = {
   router,

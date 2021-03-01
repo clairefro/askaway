@@ -3,8 +3,8 @@ const Room = require("../models").Room;
 
 /** Hide host_secret from client */
 const publicRoom = (room) => {
-  const { _id, title } = room;
-  return { _id, title };
+  const { _id, title, questions } = room;
+  return { _id, title, questions };
 };
 
 class RoomController {
@@ -25,12 +25,13 @@ class RoomController {
     } = req;
 
     try {
-      const room = await Room.findById(id);
+      const room = await Room.findById(id).populate("questions").exec();
+      console.log({ room });
       res.send(publicRoom(room));
     } catch (e) {
+      console.log({  e  });;
       throw new NotFound(`No room found with id: ${id}`);
     }
-    res.send("ok");
   }
 }
 

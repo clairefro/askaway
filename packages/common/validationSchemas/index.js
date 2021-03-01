@@ -6,6 +6,13 @@ const createRoomSchema = yup.object({
   host_secret: yup.string().required("Required"),
 });
 
+const createQuestionSchema = yup.object({
+  roomId: yup.string().required("Required"),
+  username: yup.string().required("Required"),
+  message: yup.string().required("Required"),
+});
+
 module.exports = {
   createRoomSchema,
+  createQuestionSchema,
 };
