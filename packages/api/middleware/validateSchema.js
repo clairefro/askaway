@@ -6,7 +6,7 @@ const validateBodySchema = (schema) => async (req, res, next) => {
   } catch (e) {
     res.status(400).json({
       message: "Input failed validation.",
-      error: e.errors.join(", "),
+      error: JSON.stringify(e),
     });
   }
 };
@@ -20,7 +20,7 @@ const validateParamsSchema = (schema) => async (req, res, next) => {
   } catch (e) {
     res.status(400).json({
       message: "Input failed validation.",
-      error: e.errors.join(", "),
+      error: JSON.stringify(e),
     });
   }
 };
