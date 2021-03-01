@@ -36,7 +36,7 @@ export const Room: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
       <H1>{room.title}</H1>
       <p>This is a room, trust me</p>
       {questions.map((q) => (
-        <Question data={q} />
+        <Question data={q} key={q._id} />
       ))}
     </div>
   );
