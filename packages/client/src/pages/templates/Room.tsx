@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import type { RouteComponentProps } from "react-router-dom";
 import { H1 } from "../../components/blocks/H1";
 import { useAppContext } from "../../context/AppContext";
+import { Question } from "../../components/Question";
 
 interface MatchParams {
   id: string;
@@ -12,7 +13,6 @@ export const Room: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const [room, setRoom] = useState<Room | null>(null);
   const { roomDao } = useAppContext();
   const { id } = match.params;
-
 
   useEffect(() => {
     roomDao
@@ -29,10 +29,15 @@ export const Room: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
     return <p>Room invalid or expired! :(</p>;
   }
 
+  const { questions } = room;
+
   return (
     <div>
       <H1>{room.title}</H1>
       <p>This is a room, trust me</p>
+      {questions.map((q) => (
+        <Question data={q} />
+      ))}
     </div>
   );
 };

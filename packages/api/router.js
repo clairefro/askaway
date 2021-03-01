@@ -33,6 +33,8 @@ router.post(
   asyncHandler(questionController.createQuestion)
 );
 
+router.get("/questions/:id", asyncHandler(questionController.getQuestion));
+
 
 module.exports = {
   router,
